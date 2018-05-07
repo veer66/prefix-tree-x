@@ -20,4 +20,9 @@ public class IntTarget {
 			   payload == _another.payload;
 		
 	}
+	
+	@Override
+	public String toString() {
+		return index + "//" + isFinal + "//" + payload;
+	}
 }

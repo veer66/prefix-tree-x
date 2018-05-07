@@ -22,8 +22,9 @@ public class CharPrefixTree {
 				var child = tab.get(node);
 				if (child == null) {
 					var target = new IntTarget(
-							i, isFinal, item.getPayload());
+							i, isFinal, isFinal ? item.getPayload() : 0);
 					tab.put(node, target);
+					rowNo = i;
 				} else {
 					rowNo = child.index;
 				}

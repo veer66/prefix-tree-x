@@ -44,8 +44,18 @@ public class PrefixTreeTest {
 	}
 	
 	@Test
-	public void testOneWord() {
+	public void testOneWord() {		
+		var items = Arrays.asList(new StrItem("AB", 2000));
+		var tree = new CharPrefixTree(items);
+		assertEquals(tree.seek(new CharNode(0,0,'A')), new IntTarget(0, false, 0));
+		assertEquals(tree.seek(new CharNode(0,1,'B')), new IntTarget(0, true, 2000));
+	}
+	
+	@Test
+	public void testTwoWords() {
 		var items = Arrays.asList(new StrItem("A", 1000), new StrItem("AB", 2000));
-		
+		var tree = new CharPrefixTree(items);
+		assertEquals(tree.seek(new CharNode(0,0,'A')), new IntTarget(0, true, 1000));
+		assertEquals(tree.seek(new CharNode(0,1,'B')), new IntTarget(1, true, 2000));
 	}
 }
