@@ -5,24 +5,23 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
-public class PrefixTree<Content,Element,Payload> {
+public class CharPrefixTree {
 
-	Map<Node<Element>, Target<Payload>> tab;
+	Map<CharNode, IntTarget> tab;
 
-	PrefixTree(List<Item<Content, Payload>> items, 
-			   Function<Content, Element[]> contentToElements) {
+	CharPrefixTree(List<StrItem> items) { 			   
 		tab = new HashMap<>();
 		for (var i = 0; i < items.size(); i++) {
 			var item = items.get(i);
 			var rowNo = 0;
-			var elements = contentToElements.apply(item.getContent());
+			var elements = item.getContent().toCharArray();
 			for (var j = 0; j < elements.length; j++) {
 				var isFinal = (j + 1 == elements.length);
 				var elem = elements[j];
-				var node = new Node<Element>(rowNo, j, elem);
+				var node = new CharNode(rowNo, j, elem);
 				var child = tab.get(node);
 				if (child == null) {
-					var target = new Target<Payload>(
+					var target = new IntTarget(
 							i, isFinal, item.getPayload());
 					tab.put(node, target);
 				} else {
@@ -32,7 +31,7 @@ public class PrefixTree<Content,Element,Payload> {
 		}
 	}
 	
-	public Target<Payload> seek(Node<Element> node) {
+	public IntTarget seek(CharNode node) {
 		return tab.get(node);
 	}
 }

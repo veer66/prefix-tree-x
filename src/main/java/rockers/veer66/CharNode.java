@@ -2,12 +2,12 @@ package rockers.veer66;
 
 import java.util.Objects;
 
-public class Node<Element> {
+public class CharNode {
 	public int index;
 	public int offset;
-	public Element element;
+	public char element;
 	
-	Node(int index, int offset, Element element) {
+	CharNode(int index, int offset, char element) {
 		this.index = index;
 		this.offset = offset;
 		this.element = element;
@@ -21,7 +21,7 @@ public class Node<Element> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean equals(Object another) {
-		var _another = (Node<Element>) another;
+		var _another = (CharNode) another;
 		return index == _another.index &&
 			   offset == _another.offset &&
 			   element == _another.element;

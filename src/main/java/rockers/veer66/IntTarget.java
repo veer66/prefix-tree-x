@@ -1,11 +1,11 @@
 package rockers.veer66;
 
-public class Target<Payload> {
+public class IntTarget {
 	public int index;
 	public boolean isFinal;
-	public Payload payload;
+	public int payload;
 	
-	Target(int index, boolean isFinal, Payload payload) {
+	IntTarget(int index, boolean isFinal, int payload) {
 		this.index = index;
 		this.isFinal = isFinal;
 		this.payload = payload;
@@ -14,7 +14,7 @@ public class Target<Payload> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean equals(Object another) {
-		var _another = (Target<Payload>) another;
+		var _another = (IntTarget) another;
 		return index == _another.index &&
 			   isFinal == _another.isFinal &&
 			   payload == _another.payload;

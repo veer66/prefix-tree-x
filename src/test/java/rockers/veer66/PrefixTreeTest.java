@@ -3,20 +3,16 @@ package rockers.veer66;
 import static org.junit.Assert.*;
 
 import java.util.Arrays;
-import java.util.function.Function;
-
 import org.junit.Before;
 import org.junit.Test;
 
 public class PrefixTreeTest {
-	Node<Integer> node0, node1;
-	Function<String,Character[]> strToCharArray;
+	CharNode node0, node1;
 	
 	@Before
 	public void before() {
-		node0 = new Node<>(1, 2, 100);
-		node1 = new Node<>(1, 2, 100);
-		strToCharArray = s -> s.chars().mapToObj(c -> (char)c).toArray(Character[]::new);
+		node0 = new CharNode(1, 2, 'A');
+		node1 = new CharNode(1, 2, 'A');
 	}
 
 	@Test
@@ -27,8 +23,8 @@ public class PrefixTreeTest {
 	
 	@Test
 	public void testTargetEquality() {
-		var t0 = new Target<>(1, false, 'A');
-		var t1 = new Target<>(1, false, 'A');
+		var t0 = new IntTarget(1, false, 2000);
+		var t1 = new IntTarget(1, false, 2000);
 		assertEquals(t0, t1);
 	}
 	
@@ -39,16 +35,16 @@ public class PrefixTreeTest {
 
 	@Test
 	public void testSingleItem() {
-		var minItems = Arrays.asList(new Item<>("A", 1000));
-		var tree = new PrefixTree<>(minItems, strToCharArray);		
-		var target = tree.seek(new Node<>(0,0, Character.valueOf('A')));
-		assertEquals(target.payload.intValue(), 1000);		
-		var notTarget = tree.seek(new Node<>(0,0, Character.valueOf('B')));
+		var minItems = Arrays.asList(new StrItem("A", 1000));
+		var tree = new CharPrefixTree(minItems);		
+		var target = tree.seek(new CharNode(0,0, 'A'));
+		assertEquals(target.payload, 1000);		
+		var notTarget = tree.seek(new CharNode(0,0, 'B'));
 		assertNull(notTarget);
 	}
 	
 	@Test
 	public void testOneWord() {
-		var items = Arrays.asList(new Item<>("A", 1000), new Item<>("AB", 2000));
+		var items = Arrays.asList(new StrItem<>("A", 1000), new StrItem<>("AB", 2000));
 	}
 }
