@@ -45,6 +45,7 @@ public class PrefixTreeTest {
 	
 	@Test
 	public void testOneWord() {
-		var items = Arrays.asList(new StrItem<>("A", 1000), new StrItem<>("AB", 2000));
+		var items = Arrays.asList(new StrItem("A", 1000), new StrItem("AB", 2000));
+		
 	}
 }

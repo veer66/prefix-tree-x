@@ -1,6 +1,6 @@
 package rockers.veer66;
 
-public class StrItem<Content, Payload> {
+public class StrItem {
 	
 	private String content;
 	private int payload;
