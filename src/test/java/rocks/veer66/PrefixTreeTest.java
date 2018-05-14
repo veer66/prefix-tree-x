@@ -1,10 +1,15 @@
-package rockers.veer66;
+package rocks.veer66;
 
 import static org.junit.Assert.*;
 
 import java.util.Arrays;
 import org.junit.Before;
 import org.junit.Test;
+
+import rocks.veer66.CharNode;
+import rocks.veer66.CharPrefixTree;
+import rocks.veer66.IntTarget;
+import rocks.veer66.StrItem;
 
 public class PrefixTreeTest {
 	CharNode node0, node1;
